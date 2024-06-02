@@ -1,8 +1,9 @@
 import Marquee from "react-fast-marquee";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="flex items-center justify-center p-6 md:p-0">
+    <div className="flex items-center justify-center p-6">
       <div className="flex flex-col lg:flex-row h-full w-full overflow-hidden rounded-xl shadow-md md:h-[90%] md:w-[80%] lg:h-[70%] -mt-20 lg:-mt-0">
         {/* register design side  */}
         <div className="relative h-full items-center justify-center bg-[#F2D184CC] md:flex md:w-[100%] lg:w-[40%]">
@@ -49,7 +50,7 @@ const Login = () => {
             />
             <p className="text-[14px] text-[#66451c]">
               Do not have an account ?{" "}
-              <a className="text-[#66451c] font-bold">Create one</a>
+              <Link to="/registration" className="text-[#66451c] font-bold">Registration Now</Link>
             </p>
             <input
               className="w-[92%] rounded-lg bg-[#66451c] px-6 py-2 font-bold text-white md:w-[88%] lg:w-[65%]"

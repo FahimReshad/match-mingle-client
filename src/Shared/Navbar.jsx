@@ -112,13 +112,13 @@ const Navbar = () => {
           </h2>
         </div>
       </Link>
-      <ul className="hidden items-center justify-between gap-10 md:flex uppercase font-poppins font-semibold">
+      <ul className="hidden items-center justify-between gap-10 lg:flex uppercase font-poppins font-semibold">
         {navLink}
       </ul>
       <div
         ref={dropDownMenuRef}
         onClick={() => setDropDownState(!dropDownState)}
-        className="relative flex transition-transform md:hidden"
+        className="relative flex transition-transform lg:hidden"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,49 @@
 import Marquee from "react-fast-marquee";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
+  const { signInUser, googleSignIn } = useAuth();
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    signInUser(data.email, data.password).then((result) => {
+      console.log(result.user);
+      if (result.user) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      }
+    });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((result) => {
+      console.log(result.user);
+      if (result.user) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign In successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      }
+    });
+  };
   return (
     <div className="flex items-center justify-center p-6">
       <div className="flex flex-col lg:flex-row h-full w-full overflow-hidden rounded-xl shadow-md md:h-[90%] md:w-[80%] lg:h-[70%] -mt-20 lg:-mt-0">
@@ -35,22 +77,35 @@ const Login = () => {
           <h2 className=" text-center text-3xl font-bold text-[#66451c]">
             Sign in to Matrimony
           </h2>
-          <form className="flex  w-full flex-col items-center justify-center gap-4">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex  w-full flex-col items-center justify-center gap-4"
+          >
             <input
+              {...register("email", { required: true })}
               className="w-[80%] rounded-lg border border-[#66451c] px-6 py-2 focus:outline-none focus:ring-2 focus:ring-[#66451c]/50 lg:w-[60%]"
               type="email"
               placeholder="Email"
               name="email"
             />
+            {errors.name && (
+              <span className="text-red-600">Email is required</span>
+            )}
             <input
+              {...register("password", { required: true })}
               className="w-[80%] rounded-lg border border-[#66451c] px-6 py-2 focus:outline-none focus:ring-2 focus:ring-[#66451c]/50 lg:w-[60%]"
               type="password"
               placeholder="Password"
               name="password"
             />
+            {errors.name && (
+              <span className="text-red-600">Password is required</span>
+            )}
             <p className="text-[14px] text-[#66451c]">
               Do not have an account ?{" "}
-              <Link to="/registration" className="text-[#66451c] font-bold">Registration Now</Link>
+              <Link to="/registration" className="text-[#66451c] font-bold">
+                Registration Now
+              </Link>
             </p>
             <input
               className="w-[92%] rounded-lg bg-[#66451c] px-6 py-2 font-bold text-white md:w-[88%] lg:w-[65%]"
@@ -65,11 +120,14 @@ const Login = () => {
             <hr className="flex-1" />
           </div>
           {/* sign with google */}
-          <div className="mx-auto flex h-[50px] w-[200px] gap-2 items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow">
+          <div
+            onClick={handleGoogleSignIn}
+            className="mx-auto flex h-[50px] w-[200px] gap-2 items-center overflow-hidden rounded-full shadow-md duration-300 hover:scale-95 hover:shadow hover:cursor-pointer"
+          >
             <div className="flex h-full w-[50%] items-center bg-[#66451c] pl-4 text-sm text-white">
               Sign With
             </div>
-            <span className="right-0 top-0 h-0 w-0 -rotate-90 border-b-[50px] border-r-[50px] border-b-transparent border-r-[#66451c] group-hover:hidden"></span>
+            <span className="right-0 top-0 h-0 w-0 -rotate-90 border-b-[50px] border-r-[50px] border-b-transparent border-r-[#66451c] group-hover:hidden "></span>
             <span className="pr-4 text-4xl font-bold text-[#66451c]">G+</span>
           </div>
         </div>

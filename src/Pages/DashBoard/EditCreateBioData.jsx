@@ -11,6 +11,7 @@ import {
   Switch,
   Upload,
 } from "antd";
+import useAuth from "../../Hooks/useAuth";
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 const normFile = (e) => {
@@ -33,12 +34,15 @@ const prefixSelector = (
 );
 
 const EditCreateBioData = () => {
+  const { user } = useAuth();
+  console.log(user);
   const onFinish = (values) => {
     console.log("Received values:", values);
   };
   return (
-    <div className="border shadow-2xl w-[100%] lg:w-[80%] mx-auto">
+    <div className="border shadow-2xl w-[100%]  mx-auto">
       <Form
+        className="w-full"
         onFinish={onFinish}
         labelCol={{
           span: 4,
@@ -47,8 +51,8 @@ const EditCreateBioData = () => {
           span: 14,
         }}
         layout="horizontal"
-        style={{
-          maxWidth: 1000,
+        initialValues={{
+          contactEmail: user?.email,
         }}
       >
         <Form.Item name="bioDataType" label="BioData Type">
@@ -197,8 +201,11 @@ const EditCreateBioData = () => {
           </Select>
         </Form.Item>
 
-        <Form.Item name="contactEmail" label="Contact Email">
-          <Input />
+        <Form.Item
+          name="contactEmail"
+          label="Contact Email"
+        >
+          <Input readOnly />
         </Form.Item>
         <Form.Item
           name="mobileNumber"
@@ -218,46 +225,20 @@ const EditCreateBioData = () => {
           />
         </Form.Item>
 
-        <Form.Item label="TextArea">
-          <TextArea rows={4} />
-        </Form.Item>
-        <Form.Item label="Switch" valuePropName="checked">
-          <Switch />
-        </Form.Item>
         <Form.Item
-          label="Upload"
-          valuePropName="fileList"
-          getValueFromEvent={normFile}
+          wrapperCol={{
+            offset: 4,
+            span: 20,
+          }}
         >
-          <Upload action="/upload.do" listType="picture-card">
-            <button
-              style={{
-                border: 0,
-                background: "none",
-              }}
-              type="button"
-            >
-              <PlusOutlined />
-              <div
-                style={{
-                  marginTop: 8,
-                }}
-              >
-                Upload
-              </div>
-            </button>
-          </Upload>
+          <Button
+            type="primary"
+            className="bg-[#66451c] font-poppins font-semibold w-[70%]"
+            htmlType="submit"
+          >
+            Save & Publish Now
+          </Button>
         </Form.Item>
-        <Form.Item label="Button">
-          <Button>Button</Button>
-        </Form.Item>
-        <Form.Item label="Slider">
-          <Slider />
-        </Form.Item>
-        <Form.Item label="ColorPicker">
-          <ColorPicker />
-        </Form.Item>
-        <input type="submit" value="submit" />
       </Form>
     </div>
   );

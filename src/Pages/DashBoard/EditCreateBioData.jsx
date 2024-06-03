@@ -40,7 +40,7 @@ const EditCreateBioData = () => {
     console.log("Received values:", values);
   };
   return (
-    <div className="border shadow-2xl w-[100%]  mx-auto">
+    <div className="">
       <Form
         className="w-full"
         onFinish={onFinish}

@@ -88,7 +88,7 @@ const Login = () => {
               placeholder="Email"
               name="email"
             />
-            {errors.name && (
+            {errors.email && (
               <span className="text-red-600">Email is required</span>
             )}
             <input
@@ -98,7 +98,7 @@ const Login = () => {
               placeholder="Password"
               name="password"
             />
-            {errors.name && (
+            {errors.password && (
               <span className="text-red-600">Password is required</span>
             )}
             <p className="text-[14px] text-[#66451c]">

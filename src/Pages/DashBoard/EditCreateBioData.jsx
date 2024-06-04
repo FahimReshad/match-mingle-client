@@ -1,25 +1,7 @@
-import { PlusOutlined } from "@ant-design/icons";
-import {
-  Button,
-  ColorPicker,
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  Select,
-  Slider,
-  Switch,
-  Upload,
-} from "antd";
+import { Button, DatePicker, Form, Input, InputNumber, Select } from "antd";
 import useAuth from "../../Hooks/useAuth";
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
-const normFile = (e) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 const { Option } = Select;
 const prefixSelector = (
   <Form.Item name="prefix" noStyle>
@@ -35,9 +17,22 @@ const prefixSelector = (
 
 const EditCreateBioData = () => {
   const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
   console.log(user);
   const onFinish = (values) => {
     console.log("Received values:", values);
+    const editBiodata = axiosPublic.post("/biodata", values).then((res) => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${res.data.name} is added to the menu`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
   return (
     <div className="">
@@ -201,10 +196,7 @@ const EditCreateBioData = () => {
           </Select>
         </Form.Item>
 
-        <Form.Item
-          name="contactEmail"
-          label="Contact Email"
-        >
+        <Form.Item name="contactEmail" label="Contact Email">
           <Input readOnly />
         </Form.Item>
         <Form.Item

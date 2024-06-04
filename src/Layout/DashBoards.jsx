@@ -51,7 +51,7 @@ const DashBoards = () => {
               </li>
               <li className="list-none">
                 <NavLink
-                  to="/dashboard/userHome"
+                  to="/dashboard/viewBiodata"
                   className={({ isActive, isPending }) =>
                     isActive
                       ? "no-underline space-x-2 font-bold font-poppins"

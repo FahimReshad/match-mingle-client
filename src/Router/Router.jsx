@@ -7,7 +7,9 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import DashBoards from "../Layout/DashBoards";
-import EditCreateBioData from "../Pages/DashBoard/EditCreateBioData";
+import EditCreateBioData from "../Pages/DashBoard/EditBiodata/EditCreateBioData";
+import ViewBiodata from "../Pages/DashBoard/ViewBiodata/ViewBiodata";
+// import EditCreateBioData from "../Pages/DashBoard/EditCreateBioData";
 
 
 const router = createBrowserRouter([
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "editBiodata",
         element: <EditCreateBioData></EditCreateBioData>
+      },
+      {
+        path: "viewBiodata",
+        element: <ViewBiodata></ViewBiodata>
       },
     ],
   },

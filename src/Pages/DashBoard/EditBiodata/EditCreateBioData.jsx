@@ -1,6 +1,6 @@
 import { Button, DatePicker, Form, Input, InputNumber, Select } from "antd";
-import useAuth from "../../Hooks/useAuth";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAuth from "../../../Hooks/useAuth";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 const { Option } = Select;
 const prefixSelector = (
@@ -21,7 +21,7 @@ const EditCreateBioData = () => {
   console.log(user);
   const onFinish = (values) => {
     console.log("Received values:", values);
-    const editBiodata = axiosPublic.post("/biodata", values).then((res) => {
+    axiosPublic.post("/biodata", values).then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
         Swal.fire({
@@ -47,7 +47,7 @@ const EditCreateBioData = () => {
         }}
         layout="horizontal"
         initialValues={{
-          contactEmail: user?.email,
+          email: user?.email,
         }}
       >
         <Form.Item name="bioDataType" label="BioData Type">
@@ -196,7 +196,7 @@ const EditCreateBioData = () => {
           </Select>
         </Form.Item>
 
-        <Form.Item name="contactEmail" label="Contact Email">
+        <Form.Item name="email" label="Contact Email">
           <Input readOnly />
         </Form.Item>
         <Form.Item

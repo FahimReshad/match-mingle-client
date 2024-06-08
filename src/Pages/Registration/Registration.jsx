@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Registration = () => {
-  const { createUser } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const {
     register,
@@ -24,7 +26,23 @@ const Registration = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        updateUserProfile(data.name, data.photo)
+      .then(() => {
+        const userInfo = {
+          name: data.name,
+          email: data.email
+        }
+        axiosPublic.post('/users', userInfo)
+        .then(res => {
+          if(res.data.insertedId){
+            // reset();
+            navigate('/')
+          }
+        })
+        
+      })
+
+        // navigate("/");
       }
     });
   };

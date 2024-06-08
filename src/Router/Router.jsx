@@ -9,6 +9,8 @@ import Registration from "../Pages/Registration/Registration";
 import DashBoards from "../Layout/DashBoards";
 import EditCreateBioData from "../Pages/DashBoard/EditBiodata/EditCreateBioData";
 import ViewBiodata from "../Pages/DashBoard/ViewBiodata/ViewBiodata";
+import ManageUsers from "../Pages/DashBoard/ManageUsers/ManageUsers";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 // import EditCreateBioData from "../Pages/DashBoard/EditCreateBioData";
 
 
@@ -16,6 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -55,6 +58,10 @@ const router = createBrowserRouter([
         path: "viewBiodata",
         element: <ViewBiodata></ViewBiodata>
       },
+      {
+        path: "manage",
+        element: <ManageUsers></ManageUsers>
+      }
     ],
   },
 ]);

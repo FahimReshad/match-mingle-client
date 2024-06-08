@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Login = () => {
   const { signInUser, googleSignIn } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -40,7 +42,16 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName
+      }
+      axiosPublic.post('/users', userInfo)
+      .then(res => {
+          console.log(res.data);
+          navigate('/')
+      })
+        // navigate("/");
       }
     });
   };

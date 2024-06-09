@@ -17,7 +17,6 @@ const ViewBiodata = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const [premium, setPremium] = useState([]);
-  //   const queryClient = useQueryClient();
   const { isPending, data: biodata = [] } = useQuery({
     queryKey: ["biodata"],
     queryFn: async () => {
@@ -25,7 +24,6 @@ const ViewBiodata = () => {
       return res.data;
     },
   });
-
   if (isPending) {
     return <span>Loading...</span>;
   }

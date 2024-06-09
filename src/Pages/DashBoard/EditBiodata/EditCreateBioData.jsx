@@ -18,7 +18,6 @@ const prefixSelector = (
 const EditCreateBioData = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  console.log(user);
   const onFinish = (values) => {
     console.log("Received values:", values);
     axiosPublic.post("/biodata", values).then((res) => {
@@ -27,7 +26,7 @@ const EditCreateBioData = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${res.data.name} is added to the menu`,
+          title: 'Data Added successfully',
           showConfirmButton: false,
           timer: 1500,
         });

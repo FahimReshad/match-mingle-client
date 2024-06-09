@@ -11,6 +11,7 @@ import EditCreateBioData from "../Pages/DashBoard/EditBiodata/EditCreateBioData"
 import ViewBiodata from "../Pages/DashBoard/ViewBiodata/ViewBiodata";
 import ManageUsers from "../Pages/DashBoard/ManageUsers/ManageUsers";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 // import EditCreateBioData from "../Pages/DashBoard/EditCreateBioData";
 
 
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
       {
         path: "/biodatas",
         element: <Biodatas></Biodatas>,
+      },
+      {
+        path: "biodata/details/:id",
+        loader: ({params}) => fetch(`http://localhost:5000/biodata/details/${params.id}`),
+        element: <DetailsPage></DetailsPage>
       },
       {
         path: "/aboutUs",

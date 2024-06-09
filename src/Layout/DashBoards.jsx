@@ -29,8 +29,8 @@ const DashBoards = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className=" container mx-auto">
-        <div className="flex flex-col lg:flex-row -mt-14 lg:container mx-auto">
+      <div className="mt-4">
+        <div className="flex flex-col lg:flex-row">
           <div className="h-full lg:w-80 bg-[#F2D184CC] rounded-lg ">
             <ul className="menu uppercase space-y-4">
               {isAdmin ? 

@@ -99,9 +99,9 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="flex items-center justify-between shadow bg-base-200 text-black px-4  mb-24 -mt-2 -mx-2">
+    <nav className="flex items-center justify-between shadow bg-base-200 text-black px-4 -mx-2">
       <Link to="/">
-        <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110 flex gap-2 items-center">
+        <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-white transition-all duration-200 hover:scale-110 flex gap-2 items-center">
           <img
             className="w-10 h-10"
             src="https://i.ibb.co/q1X9Xhb/title-removebg-preview.png"

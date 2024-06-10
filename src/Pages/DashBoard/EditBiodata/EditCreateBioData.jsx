@@ -126,7 +126,7 @@ const EditCreateBioData = () => {
           </Select>
         </Form.Item>
         <Form.Item name="age" label="Age">
-          <InputNumber />
+        <InputNumber />
         </Form.Item>
         <Form.Item name="occupation" label="Occupation">
           <Select>

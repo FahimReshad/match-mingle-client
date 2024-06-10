@@ -30,7 +30,7 @@ const DashBoards = () => {
     <div>
       <Navbar></Navbar>
       <div className="mt-4">
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col lg:flex-row gap-10">
           <div className="h-full lg:w-80 bg-[#F2D184CC] rounded-lg ">
             <ul className="menu uppercase space-y-4">
               {isAdmin ? 

@@ -1,9 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import BiodataCard from "./BiodataCard";
+import BiodataSearch from "./BiodataSearch";
+import { useState } from "react";
 
 const Biodatas = () => {
   const axiosPublic = useAxiosPublic();
+  const [searchResults, setSearchResults] = useState([]);
+
   const { isPending, data: biodatas = [] } = useQuery({
     queryKey: ["biodata"],
     queryFn: async () => {
@@ -17,12 +21,20 @@ const Biodatas = () => {
 
   return (
     <div className="flex gap-10">
-      <div>
-        <h2>filter</h2>
+      <div className="">
+        <BiodataSearch
+          searchResults={searchResults}
+          setSearchResults={setSearchResults}
+        />
       </div>
-
-      <div className="grid  md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {biodatas.map(biodata => <BiodataCard key={biodata._id} biodata={biodata}></BiodataCard>)}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+        {searchResults.length > 0
+          ? searchResults.map((biodata) => (
+              <BiodataCard key={biodata._id} biodata={biodata} />
+            ))
+          : biodatas.map((biodata) => (
+              <BiodataCard key={biodata._id} biodata={biodata} />
+            ))}
       </div>
     </div>
   );

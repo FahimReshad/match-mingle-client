@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
-
+import { FaSearch } from "react-icons/fa";
 
 const BiodataSearch = ({ setSearchResults}) => {
     const axiosPublic = useAxiosPublic();
@@ -45,9 +45,13 @@ const BiodataSearch = ({ setSearchResults}) => {
 
     return (
         <div>
+            <div className='flex items-center gap-2'>
+            <FaSearch  className='text-purple-800 border border-solid border-purple-800 p-1 rounded-lg'/>
+            <h2 className='text-purple-800'>I`m looking for:</h2>
+            </div>
         <Box sx={{ minWidth: 200, marginBottom: 2 }}>
             <FormControl fullWidth>
-                <InputLabel id="age-label">Age</InputLabel>
+                <InputLabel id="age-label ">Age</InputLabel>
                 <Select
                     labelId="age-label"
                     id="age"
@@ -102,10 +106,10 @@ const BiodataSearch = ({ setSearchResults}) => {
         </Box>
         <button
             onClick={handleSearch}
-            className="group relative flex w-36 items-center rounded-r-lg border-2 border-l-0 border-red-800 p-3 text-black"
+            className="group relative flex items-center rounded-lg border-2 border-purple-800 p-3 text-[#66451c] text-lg w-full font-semibold"
         >
             <span>Search</span>
-            <span className="absolute right-3 box-content flex w-1/6 justify-center rounded-md bg-red-700 duration-300 group-hover:w-5/6">
+            <span className="absolute right-3 box-content flex w-1/6 justify-center rounded-md bg-[#66451c] duration-300 group-hover:w-5/6">
                 <svg
                     viewBox="0 0 24 24"
                     fill="none"

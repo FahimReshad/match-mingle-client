@@ -20,8 +20,8 @@ const Biodatas = () => {
   }
 
   return (
-    <div className="flex gap-10">
-      <div className="">
+    <div className="flex gap-16 container mx-auto mt-6 md:mt-14">
+      <div className="shadow-2xl h-fit py-10 px-20 rounded-xl border-solid border border-[#66451c]">
         <BiodataSearch
           searchResults={searchResults}
           setSearchResults={setSearchResults}

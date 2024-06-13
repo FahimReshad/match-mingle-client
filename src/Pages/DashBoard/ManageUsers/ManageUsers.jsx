@@ -28,6 +28,29 @@ const ManageUsers = () => {
       }
     });
   };
+
+  const handlePremium = (user) => {
+    axiosSecure.patch(`/users/premium/${user._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${user.name} is a premium member now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }else{
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${user.name} is already a premium member`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  }
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full border border-gray-200 bg-white shadow-lg">
@@ -70,7 +93,7 @@ const ManageUsers = () => {
               )}
 
               <th className="px-6 py-4 text-start">
-                <button className="flex items-center rounded-full bg-[#F2D184CC] px-4 py-2 font-bold text-black font-poppins shadow-md transition-all duration-300 hover:bg-blue-700 gap-2">
+                <button onClick={() => handlePremium(user)} className="flex items-center rounded-full bg-[#F2D184CC] px-4 py-2 font-bold text-black font-poppins shadow-md transition-all duration-300 hover:bg-blue-700 gap-2">
                   <MdWorkspacePremium />
                   Make Premium
                 </button>

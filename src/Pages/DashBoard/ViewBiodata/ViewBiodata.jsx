@@ -12,15 +12,17 @@ import { IoLocationSharp } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { data } from "autoprefixer";
 
 const ViewBiodata = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const [premium, setPremium] = useState([]);
+  // const [premium, setPremium] = useState([]);
   const { isPending, data: biodata = [] } = useQuery({
     queryKey: ["biodata"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/biodata/${user.email}`);
+      const res = await axiosPublic.get(`/biodata/search/${user.email}`);
+      console.log(res.data);
       return res.data;
     },
   });
@@ -28,27 +30,54 @@ const ViewBiodata = () => {
     return <span>Loading...</span>;
   }
 
-  const handleMakePremium = async (biodataId) => {
-    console.log(biodataId);
+  const handleMakePremium = async (email) => {
+    console.log(email);
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "To make your biodata premium!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+      confirmButtonText: "Yes, request it!",
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        setPremium();
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
+        try {
+          const response = await axiosPublic.patch(`/biodata/search/${email}`, { status: 'Requested' });
+          console.log(response.data);
+          if(response.data.modifiedCount > 0){
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Success! Please wait for admin confirmation",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }else{
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Please wait for admin approval",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        }
+         catch (error) {
+          console.error(error);
+          Swal.fire({
+            title: "Error!",
+            text: "There was an error processing your request.",
+            icon: "error",
+          });
+        }
       }
     });
   };
+  
+  
+  
+  // console.log(premium);
   return (
     <>
       {biodata.map((bio) => (
@@ -169,7 +198,7 @@ const ViewBiodata = () => {
                     <h3 className="">Date of birth: </h3>
                   </div>
                   <div>
-                    <h4>{bio.dateOfBirth.slice(0, 10)}</h4>
+                    <h4>{bio?.dateOfBirth?.slice(0, 10)}</h4>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 -mb-8 text-[#66451c]">
@@ -253,7 +282,7 @@ const ViewBiodata = () => {
                 the button below!
               </h2>
               <button
-                onClick={() => handleMakePremium(bio._id)}
+                onClick={() => handleMakePremium(bio.email)}
                 className="px-6  py-1 hover:cursor-pointer hover:scale-105 rounded-lg uppercase text-xl text-white bg-[#66451c] font-poppins font-semibold"
               >
                 Make biodata Premium

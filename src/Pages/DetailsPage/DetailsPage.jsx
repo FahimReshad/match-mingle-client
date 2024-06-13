@@ -9,10 +9,10 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useLoaderData } from "react-router-dom";
 
 const DetailsPage = () => {
-  const biodata = useLoaderData();
+  const bio = useLoaderData();
+  console.log(bio);
   return (
     <>
-    {biodata.map((bio) => (
       <div key={bio._id} className="flex flex-col lg:flex-row gap-10 container mx-auto mt-4 md:mt-12">
         <div className="">
           <img
@@ -209,7 +209,7 @@ const DetailsPage = () => {
           </div>
         </div>
       </div>
-    ))}
+
   </>
   );
 };

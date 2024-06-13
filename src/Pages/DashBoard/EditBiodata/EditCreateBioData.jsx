@@ -18,15 +18,24 @@ const prefixSelector = (
 const EditCreateBioData = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     console.log("Received values:", values);
-    axiosPublic.post("/biodata", values).then((res) => {
+   await axiosPublic.put("/biodata", values).then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: 'Data Added successfully',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+      else if(res.data.modifiedCount > 0){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: 'Data modified successfully',
           showConfirmButton: false,
           timer: 1500,
         });

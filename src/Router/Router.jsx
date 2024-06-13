@@ -12,6 +12,7 @@ import ViewBiodata from "../Pages/DashBoard/ViewBiodata/ViewBiodata";
 import ManageUsers from "../Pages/DashBoard/ManageUsers/ManageUsers";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
+import ApprovedPremium from "../Pages/DashBoard/ApprovedPremium/ApprovedPremium";
 // import EditCreateBioData from "../Pages/DashBoard/EditCreateBioData";
 
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "manage",
         element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: "approvedPremium",
+        element: <ApprovedPremium></ApprovedPremium>
       }
     ],
   },

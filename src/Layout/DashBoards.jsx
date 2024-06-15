@@ -160,7 +160,7 @@ const DashBoards = () => {
                       }
                     >
                       <MdOutlineFavorite />
-                      <span>favorite biodata</span>
+                      <span>My Favorite Biodata</span>
                     </NavLink>
                   </li>
                   <li className="no-underline text-[#66451c] space-x-2 font-bold font-poppins list-none ">

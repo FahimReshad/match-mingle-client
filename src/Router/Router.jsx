@@ -13,6 +13,7 @@ import ManageUsers from "../Pages/DashBoard/ManageUsers/ManageUsers";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import ApprovedPremium from "../Pages/DashBoard/ApprovedPremium/ApprovedPremium";
+import MyFavouritesBiodata from "../Pages/DashBoard/MyFavouritesBiodata/MyFavouritesBiodata";
 // import EditCreateBioData from "../Pages/DashBoard/EditCreateBioData";
 
 
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "approvedPremium",
         element: <ApprovedPremium></ApprovedPremium>
+      },
+      {
+        path: "favoriteBiodata",
+        element: <MyFavouritesBiodata></MyFavouritesBiodata>
       }
     ],
   },

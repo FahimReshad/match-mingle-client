@@ -7,13 +7,40 @@ import { MdOutlineMail } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
 import { useLoaderData } from "react-router-dom";
+import usePremium from "../../Hooks/usePremium";
+import { MdFavorite } from "react-icons/md";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 const DetailsPage = () => {
+  const axiosSecure = useAxiosSecure();
+  const {user} = useAuth();
+  console.log(user.email);
   const bio = useLoaderData();
-  console.log(bio);
+  // console.log(bio);
+  const [isPremium] = usePremium();
+
+  const handleAddToFavorite = async() => {
+    try {
+      const response = await axiosSecure.post(`/favoriteBioData`, {
+        bio,
+        userEmail: user.email
+      });
+      console.log('Biodata added to favorites:', response.data);
+      // Optionally, update the UI to indicate success
+    } catch (error) {
+      console.error('Error adding biodata to favorites:', error);
+      // Optionally, show an error message to the user
+    }
+  };
+  
   return (
     <>
-      <div key={bio._id} className="flex flex-col lg:flex-row gap-10 container mx-auto mt-4 md:mt-12">
+      <div
+        key={bio._id}
+        className="flex flex-col lg:flex-row gap-10 container mx-auto mt-4 md:mt-12"
+      >
         <div className="">
           <img
             className="max-h-screen w-full rounded-lg mt-4 md:mt-6 lg:mt-0"
@@ -22,9 +49,14 @@ const DetailsPage = () => {
           />
         </div>
         <div className="text-black border ">
-          <h2 className="text-[#66451c] text-5xl font-poppins font-semibold">
-            {bio.name}
-          </h2>
+          <div className="flex justify-between items-center">
+            <h2 className="text-[#66451c] text-5xl font-poppins font-semibold">
+              {bio.name}
+            </h2>
+            <button onClick={handleAddToFavorite} className="rounded-xl">
+              <MdFavorite className="text-4xl text-[#66451c]" />
+            </button>
+          </div>
           <div className="flex gap-4">
             <div className="text-center bg-slate-100 pt-4 px-3 rounded-lg h-36 w-28">
               <FaCity className="text-3xl text-[#66451c] " />
@@ -62,23 +94,31 @@ const DetailsPage = () => {
             <h2 className="uppercase text-3xl text-[#66451c] font-poppins font-semibold">
               Contact info
             </h2>
-            <div className="flex items-center gap-6">
-              <MdContactPhone className="text-[#66451c] text-2xl border rounded-lg border-solid border-[#66451c] p-2" />
-              <h4 className="text-[#66451c] text-2xl border-[#66451c]">
-                Phone: <span className="text-xl">{bio.mobileNumber}</span>
-              </h4>
-            </div>
-            <div className="flex items-center gap-6 -my-8">
-              <MdOutlineMail className="text-[#66451c] text-2xl border rounded-lg border-solid border-[#66451c] p-2" />
-              <h4 className="text-[#66451c] text-2xl border-[#66451c]">
-                Email: <span className="text-xl">{bio.email}</span>
-              </h4>
-            </div>
+
+            {isPremium ? (
+              <>
+                {" "}
+                <div className="flex items-center gap-6">
+                  <MdContactPhone className="text-[#66451c] text-2xl border rounded-lg border-solid border-[#66451c] p-2" />
+                  <h4 className="text-[#66451c] text-2xl border-[#66451c]">
+                    Phone: <span className="text-xl">{bio.mobileNumber}</span>
+                  </h4>
+                </div>
+                <div className="flex items-center gap-6 -my-8">
+                  <MdOutlineMail className="text-[#66451c] text-2xl border rounded-lg border-solid border-[#66451c] p-2" />
+                  <h4 className="text-[#66451c] text-2xl border-[#66451c]">
+                    Email: <span className="text-xl">{bio.email}</span>
+                  </h4>
+                </div>
+              </>
+            ) : (
+              ""
+            )}
+
             <div className="flex items-center gap-6">
               <IoLocationSharp className="text-[#66451c] text-2xl border rounded-lg border-solid border-[#66451c] p-2" />
               <h4 className="text-[#66451c] text-2xl border-[#66451c]">
-                Address:{" "}
-                <span className="text-xl">{bio.presentDivision}</span>
+                Address: <span className="text-xl">{bio.presentDivision}</span>
               </h4>
             </div>
           </div>
@@ -187,30 +227,41 @@ const DetailsPage = () => {
                   <h4>{bio.expectedPartnerHeight}</h4>
                 </div>
               </div>
-              <div className="flex items-center gap-2 -mb-8 text-[#66451c]">
-                <IoIosArrowForward className="text-black" />
-                <div>
-                  <h3 className="">Contact Email: </h3>
-                </div>
-                <div>
-                  <h4>{bio.contactEmail}</h4>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 -mb-8 text-[#66451c]">
-                <IoIosArrowForward className="text-black" />
-                <div>
-                  <h3 className="">Mobile Number: </h3>
-                </div>
-                <div>
-                  <h4>{bio.mobileNumber}</h4>
-                </div>
-              </div>
+              {isPremium ? (
+                <>
+                  <div className="flex items-center gap-2 -mb-8 text-[#66451c]">
+                    <IoIosArrowForward className="text-black" />
+                    <div>
+                      <h3 className="">Contact Email: {bio.email}</h3>
+                    </div>
+                    <div>
+                      <h4>{bio.contactEmail}</h4>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 -mb-8 text-[#66451c]">
+                    <IoIosArrowForward className="text-black" />
+                    <div>
+                      <h3 className="">Mobile Number: </h3>
+                    </div>
+                    <div>
+                      <h4>{bio.mobileNumber}</h4>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
           </div>
+          <button
+            // onClick={() => handleMakePremium(bio.email)}
+            className=" px-6 py-1 hover:cursor-pointer hover:scale-105 rounded-lg uppercase text-white bg-[#66451c] font-poppins font-semibold"
+          >
+            add to favorite
+          </button>
         </div>
       </div>
-
-  </>
+    </>
   );
 };
 

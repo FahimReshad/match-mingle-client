@@ -14,7 +14,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import ApprovedPremium from "../Pages/DashBoard/ApprovedPremium/ApprovedPremium";
 import MyFavouritesBiodata from "../Pages/DashBoard/MyFavouritesBiodata/MyFavouritesBiodata";
-// import EditCreateBioData from "../Pages/DashBoard/EditCreateBioData";
+import Checkout from "../Pages/Checkout/Checkout";
 
 
 const router = createBrowserRouter([
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         element: <Biodatas></Biodatas>,
       },
       {
-        path: "biodata/details/:id",
+        path: "/biodata/details/:id",
         loader: ({params}) => fetch(`http://localhost:5000/biodata/details/${params.id}`),
         element: <DetailsPage></DetailsPage>
       },
@@ -52,6 +52,11 @@ const router = createBrowserRouter([
         path: "/registration",
         element: <Registration></Registration>,
       },
+      {
+        path: "/checkout/:biodataId",
+        loader: ({params}) => fetch(`http://localhost:5000/biodata/checkout/${params.biodataId}`),
+        element: <Checkout></Checkout>
+      }
     ],
   },
   {
@@ -77,7 +82,9 @@ const router = createBrowserRouter([
       {
         path: "favoriteBiodata",
         element: <MyFavouritesBiodata></MyFavouritesBiodata>
-      }
+      },
+      
+      
     ],
   },
 ]);

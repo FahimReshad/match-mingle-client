@@ -6,37 +6,34 @@ import { MdContactPhone } from "react-icons/md";
 import { MdOutlineMail } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
-import { useLoaderData } from "react-router-dom";
+import { Link, NavLink, useLoaderData } from "react-router-dom";
 import usePremium from "../../Hooks/usePremium";
 import { MdFavorite } from "react-icons/md";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 
 const DetailsPage = () => {
   const axiosSecure = useAxiosSecure();
-  const {user} = useAuth();
-  console.log(user.email);
+  const { user } = useAuth();
   const bio = useLoaderData();
   // console.log(bio);
   const [isPremium] = usePremium();
 
-  const handleAddToFavorite = async() => {
+  const handleAddToFavorite = async () => {
     try {
       const response = await axiosSecure.post(`/favoriteBioData`, {
         bio,
-        userEmail: user.email
+        userEmail: user.email,
       });
-      console.log('Biodata added to favorites:', response.data);
+      console.log("Biodata added to favorites:", response.data);
       // Optionally, update the UI to indicate success
     } catch (error) {
-      console.error('Error adding biodata to favorites:', error);
+      console.error("Error adding biodata to favorites:", error);
       // Optionally, show an error message to the user
     }
   };
-  
+
   return (
-    <>
       <div
         key={bio._id}
         className="flex flex-col lg:flex-row gap-10 container mx-auto mt-4 md:mt-12"
@@ -53,7 +50,10 @@ const DetailsPage = () => {
             <h2 className="text-[#66451c] text-5xl font-poppins font-semibold">
               {bio.name}
             </h2>
-            <button onClick={handleAddToFavorite} className="rounded-xl">
+            <button
+              onClick={handleAddToFavorite}
+              className="rounded-xl hover:cursor-pointer"
+            >
               <MdFavorite className="text-4xl text-[#66451c]" />
             </button>
           </div>
@@ -249,19 +249,16 @@ const DetailsPage = () => {
                   </div>
                 </>
               ) : (
-                ""
+                
+                <div className="mt-8 ">
+                  <Link to={`/checkout/${bio._id}`}><button className="bg-[#66451c] text-white p-2 rounded-lg font-poppins hover:cursor-pointer">Request Contact Info</button></Link>
+                </div>
               )}
             </div>
           </div>
-          <button
-            // onClick={() => handleMakePremium(bio.email)}
-            className=" px-6 py-1 hover:cursor-pointer hover:scale-105 rounded-lg uppercase text-white bg-[#66451c] font-poppins font-semibold"
-          >
-            add to favorite
-          </button>
         </div>
       </div>
-    </>
+
   );
 };
 

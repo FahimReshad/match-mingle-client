@@ -11,8 +11,6 @@ import { MdOutlineMail } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
 import Swal from "sweetalert2";
-import { useState } from "react";
-import { data } from "autoprefixer";
 
 const ViewBiodata = () => {
   const { user } = useAuth();

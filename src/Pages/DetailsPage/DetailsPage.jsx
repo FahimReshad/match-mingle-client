@@ -6,7 +6,7 @@ import { MdContactPhone } from "react-icons/md";
 import { MdOutlineMail } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
-import { Link, NavLink, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import usePremium from "../../Hooks/usePremium";
 import { MdFavorite } from "react-icons/md";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";

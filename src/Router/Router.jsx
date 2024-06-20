@@ -15,6 +15,8 @@ import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import ApprovedPremium from "../Pages/DashBoard/ApprovedPremium/ApprovedPremium";
 import MyFavouritesBiodata from "../Pages/DashBoard/MyFavouritesBiodata/MyFavouritesBiodata";
 import Checkout from "../Pages/Checkout/Checkout";
+import MyContactRequest from "../Pages/DashBoard/MyContactRequest/MyContactRequest";
+import ApprovedContactRequest from "../Pages/DashBoard/ApprovedConactRequest/ApprovedContactRequest";
 
 
 const router = createBrowserRouter([
@@ -82,6 +84,14 @@ const router = createBrowserRouter([
       {
         path: "favoriteBiodata",
         element: <MyFavouritesBiodata></MyFavouritesBiodata>
+      },
+      {
+        path: "myContactBiodata",
+        element: <MyContactRequest></MyContactRequest>
+      },
+      {
+        path: "approvedContactRequest",
+        element: <ApprovedContactRequest></ApprovedContactRequest>
       },
       
       

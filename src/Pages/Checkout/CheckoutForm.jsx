@@ -2,8 +2,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({biodata}) => {
+  console.log(biodata);
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -12,12 +15,15 @@ const CheckoutForm = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const price = 5;
+  const statuss = "pending";
 
   useEffect(() => {
-    axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-      console.log(res.data.clientSecret);
-      setClientSecret(res.data.clientSecret);
-    });
+    axiosSecure
+      .post("/create-payment-intent", { price, statuss })
+      .then((res) => {
+        // console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      });
   }, [axiosSecure]);
 
   const handleSubmit = async (event) => {
@@ -59,43 +65,67 @@ const CheckoutForm = () => {
     } else {
       console.log("payment intent:", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        console.log(paymentIntent.id);
+        // console.log(paymentIntent.id);
         setTransactionId(paymentIntent.id);
+
+        const payment = {
+          email: user?.email,
+          price: price,
+          biodata: biodata,
+          transactionId: paymentIntent.id,
+          date: new Date(),
+          status: 'pending'
+        }
+
+        const res = await axiosSecure.post('/payments', payment)
+        console.log('payment save', res.data);
+        if(res.data.insertedId){
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "payment successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+
       }
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
+    <div>
+      <form onSubmit={handleSubmit}>
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
-      <button
-        className="my-5 bg-[#66451c] text-white py-2 px-4 rounded font-poppins font-semibold hover:cursor-pointer"
-        type="submit"
-        disabled={!stripe || !clientSecret}
-      >
-        Pay
-      </button>
-      <p className="text-red-600 text-xl">{error}</p>
-      {transactionId && (
-        <p className="text-green-600 text-xl">
-          Your transaction id: {transactionId}
-        </p>
-      )}
-    </form>
+          }}
+        />
+        <button
+          className="my-5 bg-[#66451c] text-white py-2 px-4 rounded font-poppins font-semibold hover:cursor-pointer"
+          type="submit"
+          disabled={!stripe || !clientSecret}
+        >
+          Submit
+        </button>
+        <p className="text-red-600 text-xl">{error}</p>
+        {transactionId && (
+          <p className="text-green-600 text-xl">
+            Your transaction id: {transactionId}
+          </p>
+        )}
+      </form>
+    </div>
   );
 };
 

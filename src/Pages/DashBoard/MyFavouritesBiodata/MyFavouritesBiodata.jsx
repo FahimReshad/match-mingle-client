@@ -63,20 +63,20 @@ const MyFavouritesBiodata = () => {
 
         <tbody>
           {/* Table rows */}
-          {favoriteBio.map((user) => (
+          {favoriteBio.map((favBio) => (
             <tr
-              key={user._id}
+              key={favBio._id}
               className="h-[70px] border-b bg-[#484D58] text-[#FFFFFF]"
             >
-              <th className="px-6 py-4 text-center ">{user.bio.biodataId}</th>
-              <th className="px-6 py-4 text-center ">{user.bio.name}</th>
-              <th className="px-6 py-4 text-center ">{user.bio.occupation}</th>
+              <th className="px-6 py-4 text-center ">{favBio.bio.biodataId}</th>
+              <th className="px-6 py-4 text-center ">{favBio.bio.name}</th>
+              <th className="px-6 py-4 text-center ">{favBio.bio.occupation}</th>
               <th className="px-6 py-4 text-center">
-                {user.bio.permanentDivision}
+                {favBio.bio.permanentDivision}
               </th>
 
               <th className="px-6 py-4 text-center">
-                <button onClick={() => handleDeleteFavoriteBio(user._id)} className=" rounded-full bg-[#F2D184CC] px-4 py-2 font-bold text-black font-poppins shadow-md transition-all duration-300 hover:bg-blue-700 gap-2">
+                <button onClick={() => handleDeleteFavoriteBio(favBio._id)} className=" rounded-full bg-[#F2D184CC] px-4 py-2 font-bold text-black font-poppins shadow-md transition-all duration-300 hover:bg-blue-700 gap-2">
                   <MdDelete className="text-xl" />
                 </button>
               </th>

@@ -9,6 +9,7 @@ const ApprovedPremium = () => {
     queryKey: ["biodata"],
     queryFn: async () => {
       const res = await axiosSecure.get("/biodata/premium/Requested");
+      console.log(res.data);
       return res.data;
     },
   });

@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
@@ -9,6 +9,8 @@ const Login = () => {
   const { signInUser, googleSignIn } = useAuth();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+const location = useLocation();
+const from = location?.state?.from?.pathname || '/' ;
   const {
     register,
     handleSubmit,
@@ -16,32 +18,38 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    signInUser(data.email, data.password).then((result) => {
-      console.log(result.user);
-      if (result.user) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
-      }
+    signInUser(data.email, data.password)
+    .then((result) => {
+      const user = result.user;
+      console.log(user);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "You login successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate(from, { replace: true});
+      
+    })
+    .catch((error) => {
+      console.error(error);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "email and password do not match each other",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   };
 
   const handleGoogleSignIn = () => {
     googleSignIn().then((result) => {
       console.log(result.user);
+
       if (result.user) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Sign In successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName
@@ -49,9 +57,16 @@ const Login = () => {
       axiosPublic.post('/users', userInfo)
       .then(res => {
           console.log(res.data);
-          navigate('/')
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Sign In successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          
       })
-        // navigate("/");
+      navigate('/')
       }
     });
   };

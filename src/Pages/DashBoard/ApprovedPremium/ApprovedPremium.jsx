@@ -8,7 +8,7 @@ const ApprovedPremium = () => {
   const {refetch, data: biodata = [] } = useQuery({
     queryKey: ["biodata"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/biodata/premium/Requested");
+      const res = await axiosSecure.get("/biodata/premium/Requested", {withCredentials: true});
       console.log(res.data);
       return res.data;
     },

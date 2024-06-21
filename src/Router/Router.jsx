@@ -18,6 +18,8 @@ import Checkout from "../Pages/Checkout/Checkout";
 import MyContactRequest from "../Pages/DashBoard/MyContactRequest/MyContactRequest";
 import ApprovedContactRequest from "../Pages/DashBoard/ApprovedConactRequest/ApprovedContactRequest";
 import GotMarried from "../Pages/DashBoard/GotMarried/GotMarried";
+import AdminDashBoard from "../Pages/DashBoard/AdminDashBoard/AdminDashBoard";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -37,7 +39,7 @@ const router = createBrowserRouter([
       {
         path: "/biodata/details/:id",
         loader: ({params}) => fetch(`http://localhost:5000/biodata/details/${params.id}`),
-        element: <DetailsPage></DetailsPage>
+        element: <PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>
       },
       {
         path: "/aboutUs",
@@ -58,17 +60,21 @@ const router = createBrowserRouter([
       {
         path: "/checkout/:biodataId",
         loader: ({params}) => fetch(`http://localhost:5000/biodata/checkout/${params.biodataId}`),
-        element: <Checkout></Checkout>
+        element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
       }
     ],
   },
   {
     path: "dashboard",
-    element: <DashBoards></DashBoards>,
+    element: <PrivateRoute><DashBoards></DashBoards></PrivateRoute>,
     children: [
       {
         path: "editBiodata",
         element: <EditCreateBioData></EditCreateBioData>
+      },
+      {
+        path: "adminDashboard",
+        element: <AdminDashBoard></AdminDashBoard>
       },
       {
         path: "viewBiodata",

@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 
 const Navbar = () => {
   const [dropDownState, setDropDownState] = useState(false);
   const dropDownMenuRef = useRef();
+  const [isAdmin] = useAdmin();
 
   useEffect(() => {
     const closeDropDown = (e) => {
@@ -83,8 +85,8 @@ const Navbar = () => {
       >
         <li className="group flex  cursor-pointer flex-col">Login</li>
       </NavLink>
-      <NavLink
-        to="/dashboard"
+      {isAdmin ? <NavLink
+        to="/dashboard/adminDashboard"
         className={({ isActive, isPending }) =>
           isActive
             ? "no-underline"
@@ -94,7 +96,20 @@ const Navbar = () => {
         }
       >
         <li className="group flex  cursor-pointer flex-col">Dashboard</li>
-      </NavLink>
+      </NavLink> : 
+      <NavLink
+      to="/dashboard/editBiodata"
+      className={({ isActive, isPending }) =>
+        isActive
+          ? "no-underline"
+          : isPending
+          ? "pending"
+          : "no-underline text-[#66451c]"
+      }
+    >
+      <li className="group flex  cursor-pointer flex-col">Dashboard</li>
+    </NavLink>
+      }
     </>
   );
 

@@ -9,7 +9,7 @@ const usePremium = () => {
   const { data: isPremium, isPending } = useQuery({
     queryKey: [user?.email, "isPremium"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/premium/${user.email}`);
+      const res = await axiosSecure.get(`/users/premium/${user.email}`, {withCredentials: true});
       return res?.data?.status;
     },
   });

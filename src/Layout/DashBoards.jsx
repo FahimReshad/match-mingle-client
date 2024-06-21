@@ -8,6 +8,7 @@ import { FaCheckDouble } from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import Footer from "../Shared/Footer";
 
 const DashBoards = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const DashBoards = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="mt-4">
+      <div className="mt-4 min-h-[calc(100vh-600px)]">
         <div className="flex flex-col lg:flex-row gap-10">
           <div className="h-full lg:w-80 bg-[#F2D184CC] rounded-lg ">
             <ul className="menu uppercase space-y-4">
@@ -188,10 +189,15 @@ const DashBoards = () => {
               }
             </ul>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 h-auto">
             <Outlet></Outlet>
+            
           </div>
+          
         </div>
+      </div>
+      <div className="mt-10">
+      <Footer></Footer>
       </div>
     </div>
   );

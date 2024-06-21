@@ -8,7 +8,7 @@ const Footer = () => {
       <footer className=" flex flex-col lg:flex-row gap-10 lg:justify-evenly">
         <div className="text-[#415764] font-semibold">
           <h4 className="uppercase text-xl text-[#415764]">Get in touch</h4>
-          <p>Address: 3812 Lena Lane City Jackson Mississippi</p>
+          <p>Address: Pahartali, Chattogram, Bangladesh.</p>
           <p>Phone: +88 014 68 - 489460</p>
           <p>Email: matchmingle@gmail.com</p>
         </div>

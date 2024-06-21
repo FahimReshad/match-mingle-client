@@ -20,7 +20,7 @@ const EditCreateBioData = () => {
   const axiosPublic = useAxiosPublic();
   const onFinish = async (values) => {
     console.log("Received values:", values);
-   await axiosPublic.put("/biodata", values).then((res) => {
+   await axiosPublic.put("/biodata", values, {withCredentials: true}).then((res) => {
       console.log(res.data);
       if (res.data.upsertedId) {
         Swal.fire({

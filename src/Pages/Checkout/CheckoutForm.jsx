@@ -19,7 +19,7 @@ const CheckoutForm = ({biodata}) => {
 
   useEffect(() => {
     axiosSecure
-      .post("/create-payment-intent", { price })
+      .post("/create-payment-intent", { price }, {withCredentials: true})
       .then((res) => {
         // console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const ApprovedPremium = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: biodata = [] } = useQuery({
+  const {refetch, data: biodata = [] } = useQuery({
     queryKey: ["biodata"],
     queryFn: async () => {
       const res = await axiosSecure.get("/biodata/premium/Requested");
@@ -26,6 +26,7 @@ const ApprovedPremium = () => {
         title: "Success! Your biodata is premium now.",
         showConfirmButton: false,
         timer: 1500,
+        
       });
     } else {
       Swal.fire({
@@ -36,6 +37,7 @@ const ApprovedPremium = () => {
         timer: 1500,
       });
     }
+    refetch()
   };
 
   return (

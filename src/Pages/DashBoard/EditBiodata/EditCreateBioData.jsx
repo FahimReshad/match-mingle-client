@@ -22,7 +22,7 @@ const EditCreateBioData = () => {
     console.log("Received values:", values);
    await axiosPublic.put("/biodata", values).then((res) => {
       console.log(res.data);
-      if (res.data.insertedId) {
+      if (res.data.upsertedId) {
         Swal.fire({
           position: "top-end",
           icon: "success",

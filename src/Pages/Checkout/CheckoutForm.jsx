@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
-import axios from "axios";
 import Swal from "sweetalert2";
 
+// eslint-disable-next-line react/prop-types
 const CheckoutForm = ({biodata}) => {
   console.log(biodata);
   const [error, setError] = useState("");
@@ -15,11 +16,10 @@ const CheckoutForm = ({biodata}) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const price = 5;
-  const statuss = "pending";
 
   useEffect(() => {
     axiosSecure
-      .post("/create-payment-intent", { price, statuss })
+      .post("/create-payment-intent", { price })
       .then((res) => {
         // console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
@@ -93,20 +93,26 @@ const CheckoutForm = ({biodata}) => {
     }
   };
   return (
-    <div>
+    <div className="md:w-1/2 lg:w-1/3 mx-auto mt-10">
+      <h3 className="">Please provide your card number and submit it paying the fee <span className="text-[#66451c]">[5 USD]</span></h3>
       <form onSubmit={handleSubmit}>
+        <label className="font-semibold">Biodata Id:</label>
+        <input className="w-full p-2 font-poppins font-semibold mb-2" type="text" value={biodata.biodataId} readOnly />
+        <label className="font-semibold">Self Email:</label>
+        <input className="w-full p-2 font-poppins font-semibold mb-4" type="text" value={user?.email} readOnly />
         <CardElement
           options={{
             style: {
               base: {
                 fontSize: "16px",
-                color: "#424770",
+                color: "#000000",
                 "::placeholder": {
-                  color: "#aab7c4",
+                  color: "#000000",
+                  fontSize: 'bold'
                 },
               },
               invalid: {
-                color: "#9e2146",
+                color: "#000000",
               },
             },
           }}

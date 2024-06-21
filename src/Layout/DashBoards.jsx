@@ -4,6 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdGridView, MdOutlineFavorite } from "react-icons/md";
 import { BiSolidContact } from "react-icons/bi";
 import { TbLogout } from "react-icons/tb";
+import { FaCheckDouble } from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
@@ -161,6 +162,21 @@ const DashBoards = () => {
                     >
                       <MdOutlineFavorite />
                       <span>My Favorite Biodata</span>
+                    </NavLink>
+                  </li>
+                  <li className="list-none">
+                    <NavLink
+                      to="/dashboard/gotMarried"
+                      className={({ isActive, isPending }) =>
+                        isActive
+                          ? "no-underline space-x-2 font-bold font-poppins"
+                          : isPending
+                          ? "pending"
+                          : "no-underline text-[#66451c] space-x-2 font-bold font-poppins"
+                      }
+                    >
+                      <FaCheckDouble />
+                      <span>Got Married</span>
                     </NavLink>
                   </li>
                   <li className="no-underline text-[#66451c] space-x-2 font-bold font-poppins list-none ">

@@ -17,6 +17,7 @@ import MyFavouritesBiodata from "../Pages/DashBoard/MyFavouritesBiodata/MyFavour
 import Checkout from "../Pages/Checkout/Checkout";
 import MyContactRequest from "../Pages/DashBoard/MyContactRequest/MyContactRequest";
 import ApprovedContactRequest from "../Pages/DashBoard/ApprovedConactRequest/ApprovedContactRequest";
+import GotMarried from "../Pages/DashBoard/GotMarried/GotMarried";
 
 
 const router = createBrowserRouter([
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "approvedContactRequest",
         element: <ApprovedContactRequest></ApprovedContactRequest>
+      },
+      {
+        path: "gotMarried",
+        element: <GotMarried></GotMarried>
       },
       
       

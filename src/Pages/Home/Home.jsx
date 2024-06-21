@@ -1,7 +1,13 @@
+import Banner from "./Banner";
+import PremiumBioCards from "./PremiumBioCards";
+
 const Home = () => {
   return (
     <div>
-      <h2>this is home</h2>
+      <Banner></Banner>
+      <div className="container mx-auto">
+      <PremiumBioCards></PremiumBioCards>
+      </div>
     </div>
   );
 };

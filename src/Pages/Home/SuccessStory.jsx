@@ -39,6 +39,7 @@ const SuccessStory = () => {
       currentSlider === sliders.length - 1 ? 0 : currentSlider + 1
     );
   const isSmallScreen = window.innerWidth <= 768;
+  
   return (
     <div className="mt-10 lg:mt-28">
       <div>

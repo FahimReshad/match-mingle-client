@@ -42,7 +42,7 @@ const PremiumBioCards = () => {
         Moment's
       </p>
       <h2 className="text-[#66451c] text-center text-4xl font-poppins -mt-4">
-        Our Premium Member's
+        Our Premium Member's 
       </h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
         {premiumBiodatas.slice(0, 6).map((premiumBiodata) => (

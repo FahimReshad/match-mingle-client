@@ -9,7 +9,6 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
@@ -50,7 +49,6 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
       setUser(currentUser);
       setLoading(false);
 
@@ -94,7 +92,8 @@ const AuthProvider = ({ children }) => {
     signInUser,
     googleSignIn,
     updateUserProfile,
-    logOut
+    logOut,
+    loading
   };
 
   return (

@@ -1,9 +1,13 @@
+import { Helmet } from "react-helmet-async";
 import AboutUsCard from "../../Component/AboutUsCard";
 import AboutUsWedding from "../../Component/AboutUsWedding";
 
 const AboutUs = () => {
   return (
     <div>
+      <Helmet>
+        <title>Match Mingle || AboutUs</title>
+      </Helmet>
       <div className="h-[500px] bg-[#2a262691] flex flex-col justify-center items-center -mx-2 space-y-1">
         <h3 className="text-[#ffb400] text-2xl font-poppins">
         # <span className="text-4xl">1</span>WEDDING WEBSITE

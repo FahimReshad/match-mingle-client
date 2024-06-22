@@ -1,10 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
-
 const ErrorPage = () => {
-    return (
-        <section className="flex items-center h-full w-full p-16 lg:mt-20">
+  return (
+    <section className="flex items-center h-full w-full p-16 lg:mt-20">
+      <Helmet>
+        <title>Match Mingle || Error</title>
+      </Helmet>
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
         <div className="text-center flex flex-col items-center justify-center">
           <div>
@@ -29,7 +32,7 @@ const ErrorPage = () => {
         </div>
       </div>
     </section>
-    );
+  );
 };
 
 export default ErrorPage;

@@ -3,30 +3,33 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import TextArea from "antd/es/input/TextArea";
 import useAuth from "../../../Hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const GotMarried = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const onFinish = async (values) => {
-    await axiosPublic.put("/successStory", values, {withCredentials: true}).then((res) => {
-      if (res.data.upsertedId) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Data Added successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else if (res.data.modifiedCount > 0) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Data modified successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
+    await axiosPublic
+      .put("/successStory", values, { withCredentials: true })
+      .then((res) => {
+        if (res.data.upsertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Data Added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Data modified successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div className="">
@@ -44,6 +47,9 @@ const GotMarried = () => {
           email: user?.email,
         }}
       >
+        <Helmet>
+          <title>Match Mingle || GotMarried</title>
+        </Helmet>
         <Form.Item name="selfBiodataId" label="Self BiodataId">
           <Input />
         </Form.Item>

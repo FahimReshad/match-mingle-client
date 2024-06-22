@@ -4,7 +4,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="bg-[#dddddd] -ml-2 -mr-2 -mb-2 pt-14">
+    <div className="bg-[#dddddd] -ml-2 -mr-2 -mb-2 pt-14 mt-8">
       <footer className=" flex flex-col lg:flex-row gap-10 lg:justify-evenly">
         <div className="text-[#415764] font-semibold">
           <h4 className="uppercase text-xl text-[#415764]">Get in touch</h4>

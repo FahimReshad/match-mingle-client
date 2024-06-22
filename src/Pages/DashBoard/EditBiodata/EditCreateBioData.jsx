@@ -2,6 +2,7 @@ import { Button, DatePicker, Form, Input, InputNumber, Select } from "antd";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 const { Option } = Select;
 const prefixSelector = (
   <Form.Item name="prefix" noStyle>
@@ -20,27 +21,27 @@ const EditCreateBioData = () => {
   const axiosPublic = useAxiosPublic();
   const onFinish = async (values) => {
     console.log("Received values:", values);
-   await axiosPublic.put("/biodata", values, {withCredentials: true}).then((res) => {
-      console.log(res.data);
-      if (res.data.upsertedId) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: 'Data Added successfully',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-      else if(res.data.modifiedCount > 0){
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: 'Data modified successfully',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
+    await axiosPublic
+      .put("/biodata", values, { withCredentials: true })
+      .then((res) => {
+        if (res.data.upsertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Data Added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Data modified successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div className="">
@@ -58,6 +59,9 @@ const EditCreateBioData = () => {
           email: user?.email,
         }}
       >
+        <Helmet>
+          <title>Match Mingle || EditCreateBiodata</title>
+        </Helmet>
         <Form.Item name="bioDataType" label="BioData Type">
           <Select>
             <Select.Option value="male">Male</Select.Option>
@@ -135,7 +139,7 @@ const EditCreateBioData = () => {
           </Select>
         </Form.Item>
         <Form.Item name="age" label="Age">
-        <InputNumber />
+          <InputNumber />
         </Form.Item>
         <Form.Item name="occupation" label="Occupation">
           <Select>

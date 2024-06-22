@@ -4,6 +4,7 @@ import { RiAdminFill } from "react-icons/ri";
 import { MdWorkspacePremium } from "react-icons/md";
 import { GrUserAdmin } from "react-icons/gr";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,7 +17,6 @@ const ManageUsers = () => {
   });
   const handleAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-end",
@@ -31,7 +31,6 @@ const ManageUsers = () => {
 
   const handlePremium = (user) => {
     axiosSecure.patch(`/users/premium/${user._id}`).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-end",
@@ -53,6 +52,9 @@ const ManageUsers = () => {
   }
   return (
     <div className="overflow-x-auto">
+      <Helmet>
+        <title>Match Mingle || ManageUsers</title>
+      </Helmet>
       <table className="min-w-full border border-gray-200 bg-white shadow-lg">
         {/* Table Header */}
         <thead>

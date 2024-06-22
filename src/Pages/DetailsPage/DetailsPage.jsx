@@ -11,6 +11,8 @@ import usePremium from "../../Hooks/usePremium";
 import { MdFavorite } from "react-icons/md";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const DetailsPage = () => {
   const axiosSecure = useAxiosSecure();
@@ -25,6 +27,15 @@ const DetailsPage = () => {
         bio,
         userEmail: user.email,
       });
+      if(response.data){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "You added this biodata in your favorite biodata list",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
       console.log("Biodata added to favorites:", response.data);
       // Optionally, update the UI to indicate success
     } catch (error) {
@@ -38,6 +49,9 @@ const DetailsPage = () => {
         key={bio._id}
         className="flex flex-col lg:flex-row gap-10 container mx-auto mt-4 md:mt-12"
       >
+        <Helmet>
+        <title>Match Mingle || DetailsPage</title>
+      </Helmet>
         <div className="">
           <img
             className="max-h-screen w-full rounded-lg mt-4 md:mt-6 lg:mt-0"

@@ -1,10 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
-import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import { useQuery } from "@tanstack/react-query";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const AdminDashBoard = () => {
-    const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
   // Fetching total biodata
   const { isLoading: isLoadingBiodata, data: biodatas = [] } = useQuery({
@@ -19,41 +20,66 @@ const AdminDashBoard = () => {
   const { isLoading: isLoadingMaleBio, data: maleBiodatas = [] } = useQuery({
     queryKey: ["maleBiodata"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/biodata/male", { withCredentials: true });
+      const res = await axiosPublic.get("/biodata/male", {
+        withCredentials: true,
+      });
       return res.data;
     },
   });
 
   // Fetching female biodata
-  const { isLoading: isLoadingFemaleBio, data: femaleBiodatas = [] } = useQuery({
-    queryKey: ["femaleBiodata"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/biodata/female", { withCredentials: true });
-      return res.data;
-    },
-  });
+  const { isLoading: isLoadingFemaleBio, data: femaleBiodatas = [] } = useQuery(
+    {
+      queryKey: ["femaleBiodata"],
+      queryFn: async () => {
+        const res = await axiosPublic.get("/biodata/female", {
+          withCredentials: true,
+        });
+        return res.data;
+      },
+    }
+  );
 
   // Fetching married biodata
-  const { isLoading: isLoadingMarriedBio, data: marriedBiodatas = [] } = useQuery({
-    queryKey: ["marriedBiodatas"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/successStory");
-      return res.data;
-    },
-  });
+  const { isLoading: isLoadingMarriedBio, data: marriedBiodatas = [] } =
+    useQuery({
+      queryKey: ["marriedBiodatas"],
+      queryFn: async () => {
+        const res = await axiosPublic.get("/successStory");
+        return res.data;
+      },
+    });
 
-  if (isLoadingBiodata || isLoadingMaleBio || isLoadingFemaleBio || isLoadingMarriedBio) {
+  if (
+    isLoadingBiodata ||
+    isLoadingMaleBio ||
+    isLoadingFemaleBio ||
+    isLoadingMarriedBio
+  ) {
     return <span>Loading...</span>;
   }
 
   const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+  }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
     return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
         {`${(percent * 100).toFixed(0)}%`}
       </text>
     );
@@ -61,14 +87,17 @@ const AdminDashBoard = () => {
 
   // Aggregate the data for the PieChart
   const piechartData = [
-    { name: 'Male', value: maleBiodatas.length },
-    { name: 'Female', value: femaleBiodatas.length },
-    { name: 'Married', value: marriedBiodatas.length },
-    { name: 'Total', value: biodatas.length }
+    { name: "Male", value: maleBiodatas.length },
+    { name: "Female", value: femaleBiodatas.length },
+    { name: "Married", value: marriedBiodatas.length },
+    { name: "Total", value: biodatas.length },
   ];
 
   return (
     <ResponsiveContainer width="100%" height={400}>
+      <Helmet>
+        <title>Match Mingle || AdminDashboard</title>
+      </Helmet>
       <PieChart>
         <Pie
           data={piechartData}

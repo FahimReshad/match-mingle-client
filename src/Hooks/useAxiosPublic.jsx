@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL: "http://localhost:5000"
-})
+  baseURL: "https://match-mingle-server-fahim-reshads-projects.vercel.app",
+});
 const useAxiosPublic = () => {
-    return axiosPublic;
+  return axiosPublic;
 };
 
 export default useAxiosPublic;

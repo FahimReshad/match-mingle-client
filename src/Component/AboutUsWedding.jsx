@@ -34,20 +34,20 @@ const AboutUsWedding = () => {
         <div className="flex gap-8">
           <div className="flex items-center justify-center gap-4">
             <div className="bg-slate-400 rounded-full p-2">
-            <FaPhoneAlt className="text-[#66451c] text-3xl" />
+              <FaPhoneAlt className="text-[#66451c] text-3xl" />
             </div>
             <div className="-space-y-5">
-                <p className="text-gray-600 font-bold">Enquiry:</p>
-            <p className="text-[#66451c] text-xl">+880 17xxxxxxxxxxx</p>
+              <p className="text-gray-600 font-bold">Enquiry:</p>
+              <p className="text-[#66451c] text-xl">+880 17xxxxxxxxxxx</p>
             </div>
           </div>
           <div className="flex items-center justify-center gap-4">
             <div className="bg-slate-400 rounded-full p-2">
-            <MdEmail className="text-[#66451c] text-3xl" />
+              <MdEmail className="text-[#66451c] text-3xl" />
             </div>
             <div className="-space-y-5">
-                <p className="text-gray-600 font-bold">Get Support:</p>
-            <p className="text-[#66451c] text-xl">info@example.com</p>
+              <p className="text-gray-600 font-bold">Get Support:</p>
+              <p className="text-[#66451c] text-xl">info@example.com</p>
             </div>
           </div>
         </div>

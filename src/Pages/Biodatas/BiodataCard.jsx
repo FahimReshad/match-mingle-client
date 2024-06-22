@@ -46,9 +46,11 @@ const BiodataCard = ({ biodata }) => {
         </div>
       </div>
 
-      <Link to={`/biodata/details/${_id}`} className="w-full"><button className="w-full rounded-full py-2 text-[12px] font-semibold text-[#66451c] ring-1 ring-[#66451c] hover:bg-[#66451c] hover:text-white sm:text-sm md:text-base">
-        View Profile
-      </button></Link>
+      <Link to={`/biodata/details/${_id}`} className="w-full">
+        <button className="w-full rounded-full py-2 text-[12px] font-semibold text-[#66451c] ring-1 ring-[#66451c] hover:bg-[#66451c] hover:text-white sm:text-sm md:text-base">
+          View Profile
+        </button>
+      </Link>
     </div>
   );
 };

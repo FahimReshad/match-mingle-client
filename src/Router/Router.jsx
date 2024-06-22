@@ -21,7 +21,6 @@ import GotMarried from "../Pages/DashBoard/GotMarried/GotMarried";
 import AdminDashBoard from "../Pages/DashBoard/AdminDashBoard/AdminDashBoard";
 import PrivateRoute from "./PrivateRoute";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,8 +37,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/biodata/details/:id",
-        loader: ({params}) => fetch(`http://localhost:5000/biodata/details/${params.id}`),
-        element: <PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>
+        loader: ({ params }) =>
+          fetch(
+            `https://match-mingle-server-fahim-reshads-projects.vercel.app/biodata/details/${params.id}`
+          ),
+        element: (
+          <PrivateRoute>
+            <DetailsPage></DetailsPage>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/aboutUs",
@@ -59,53 +65,62 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout/:biodataId",
-        loader: ({params}) => fetch(`http://localhost:5000/biodata/checkout/${params.biodataId}`),
-        element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
-      }
+        loader: ({ params }) =>
+          fetch(
+            `https://match-mingle-server-fahim-reshads-projects.vercel.app/biodata/checkout/${params.biodataId}`
+          ),
+        element: (
+          <PrivateRoute>
+            <Checkout></Checkout>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
     path: "dashboard",
-    element: <PrivateRoute><DashBoards></DashBoards></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <DashBoards></DashBoards>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "editBiodata",
-        element: <EditCreateBioData></EditCreateBioData>
+        element: <EditCreateBioData></EditCreateBioData>,
       },
       {
         path: "adminDashboard",
-        element: <AdminDashBoard></AdminDashBoard>
+        element: <AdminDashBoard></AdminDashBoard>,
       },
       {
         path: "viewBiodata",
-        element: <ViewBiodata></ViewBiodata>
+        element: <ViewBiodata></ViewBiodata>,
       },
       {
         path: "manage",
-        element: <ManageUsers></ManageUsers>
+        element: <ManageUsers></ManageUsers>,
       },
       {
         path: "approvedPremium",
-        element: <ApprovedPremium></ApprovedPremium>
+        element: <ApprovedPremium></ApprovedPremium>,
       },
       {
         path: "favoriteBiodata",
-        element: <MyFavouritesBiodata></MyFavouritesBiodata>
+        element: <MyFavouritesBiodata></MyFavouritesBiodata>,
       },
       {
         path: "myContactBiodata",
-        element: <MyContactRequest></MyContactRequest>
+        element: <MyContactRequest></MyContactRequest>,
       },
       {
         path: "approvedContactRequest",
-        element: <ApprovedContactRequest></ApprovedContactRequest>
+        element: <ApprovedContactRequest></ApprovedContactRequest>,
       },
       {
         path: "gotMarried",
-        element: <GotMarried></GotMarried>
+        element: <GotMarried></GotMarried>,
       },
-      
-      
     ],
   },
 ]);

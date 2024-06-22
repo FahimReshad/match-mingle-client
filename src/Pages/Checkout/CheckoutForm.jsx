@@ -6,7 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
 // eslint-disable-next-line react/prop-types
-const CheckoutForm = ({biodata}) => {
+const CheckoutForm = ({ biodata }) => {
   console.log(biodata);
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
@@ -19,7 +19,7 @@ const CheckoutForm = ({biodata}) => {
 
   useEffect(() => {
     axiosSecure
-      .post("/create-payment-intent", { price }, {withCredentials: true})
+      .post("/create-payment-intent", { price }, { withCredentials: true })
       .then((res) => {
         // console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
@@ -74,32 +74,44 @@ const CheckoutForm = ({biodata}) => {
           biodata: biodata,
           transactionId: paymentIntent.id,
           date: new Date(),
-          status: 'pending'
-        }
+          status: "pending",
+        };
 
-        const res = await axiosSecure.post('/payments', payment)
-        console.log('payment save', res.data);
-        if(res.data.insertedId){
+        const res = await axiosSecure.post("/payments", payment);
+        console.log("payment save", res.data);
+        if (res.data.insertedId) {
           Swal.fire({
             position: "top-end",
             icon: "success",
             title: "payment successfully",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
         }
-
       }
     }
   };
   return (
     <div className="md:w-1/2 lg:w-1/3 mx-auto mt-10">
-      <h3 className="">Please provide your card number and submit it paying the fee <span className="text-[#66451c]">[5 USD]</span></h3>
+      <h3 className="">
+        Please provide your card number and submit it paying the fee{" "}
+        <span className="text-[#66451c]">[5 USD]</span>
+      </h3>
       <form onSubmit={handleSubmit}>
         <label className="font-semibold">Biodata Id:</label>
-        <input className="w-full p-2 font-poppins font-semibold mb-2" type="text" value={biodata.biodataId} readOnly />
+        <input
+          className="w-full p-2 font-poppins font-semibold mb-2"
+          type="text"
+          value={biodata.biodataId}
+          readOnly
+        />
         <label className="font-semibold">Self Email:</label>
-        <input className="w-full p-2 font-poppins font-semibold mb-4" type="text" value={user?.email} readOnly />
+        <input
+          className="w-full p-2 font-poppins font-semibold mb-4"
+          type="text"
+          value={user?.email}
+          readOnly
+        />
         <CardElement
           options={{
             style: {
@@ -108,7 +120,7 @@ const CheckoutForm = ({biodata}) => {
                 color: "#000000",
                 "::placeholder": {
                   color: "#000000",
-                  fontSize: 'bold'
+                  fontSize: "bold",
                 },
               },
               invalid: {

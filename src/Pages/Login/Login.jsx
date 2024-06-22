@@ -4,13 +4,14 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signInUser, googleSignIn } = useAuth();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
-const location = useLocation();
-const from = location?.state?.from?.pathname || '/' ;
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -19,44 +20,39 @@ const from = location?.state?.from?.pathname || '/' ;
 
   const onSubmit = (data) => {
     signInUser(data.email, data.password)
-    .then((result) => {
-      const user = result.user;
-      console.log(user);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "You login successfully",
-        showConfirmButton: false,
-        timer: 1500,
+      .then((result) => {
+        const user = result.user;
+        if (user) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "You login successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(from, { replace: true });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "email and password do not match each other",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
-      navigate(from, { replace: true});
-      
-    })
-    .catch((error) => {
-      console.error(error);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "email and password do not match each other",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    });
   };
 
   const handleGoogleSignIn = () => {
     googleSignIn().then((result) => {
-      console.log(result.user);
-
       if (result.user) {
-        
         const userInfo = {
           email: result.user?.email,
-          name: result.user?.displayName
-      }
-      axiosPublic.post('/users', userInfo)
-      .then(res => {
-          console.log(res.data);
+          name: result.user?.displayName,
+        };
+        axiosPublic.post("/users", userInfo).then(() => {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -64,15 +60,17 @@ const from = location?.state?.from?.pathname || '/' ;
             showConfirmButton: false,
             timer: 1500,
           });
-          
-      })
-      navigate('/')
+        });
+        navigate("/");
       }
     });
   };
   return (
     <div className="flex items-center justify-center p-6">
-      <div className="flex flex-col lg:flex-row h-full w-full overflow-hidden rounded-xl shadow-md md:h-[90%] md:w-[80%] lg:h-[70%] -mt-20 lg:-mt-0">
+      <Helmet>
+        <title>Match Mingle || Login</title>
+      </Helmet>
+      <div className="flex flex-col lg:flex-row h-full w-full overflow-hidden rounded-xl shadow-md md:h-[90%] md:w-[80%] lg:h-[70%]">
         {/* register design side  */}
         <div className="relative h-full items-center justify-center bg-[#F2D184CC] md:flex md:w-[100%] lg:w-[40%]">
           <div className="space-y-2 text-center">

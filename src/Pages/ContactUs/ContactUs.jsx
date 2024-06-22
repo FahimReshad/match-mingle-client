@@ -1,9 +1,13 @@
+import { Helmet } from "react-helmet-async";
 import ContactUsCard from "../../Component/ContactUsCard";
 import ContactUsForm from "../../Component/ContactUsForm";
 
 const ContactUs = () => {
   return (
     <div>
+      <Helmet>
+        <title>Match Mingle || ContactUs</title>
+      </Helmet>
       <div className="h-[500px] bg-[#2a262691] flex flex-col justify-center items-center -mx-2 space-y-4">
         <h3 className="text-[#ffb400] text-2xl font-poppins">
           WE ARE HERE TO ASSIST YOU.

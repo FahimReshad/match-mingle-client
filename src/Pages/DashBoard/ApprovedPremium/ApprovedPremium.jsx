@@ -2,14 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { MdWorkspacePremium } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ApprovedPremium = () => {
   const axiosSecure = useAxiosSecure();
-  const {refetch, data: biodata = [] } = useQuery({
+  const { refetch, data: biodata = [] } = useQuery({
     queryKey: ["biodata"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/biodata/premium/Requested", {withCredentials: true});
-      console.log(res.data);
+      const res = await axiosSecure.get("/biodata/premium/Requested", {
+        withCredentials: true,
+      });
       return res.data;
     },
   });
@@ -18,7 +20,6 @@ const ApprovedPremium = () => {
     const response = await axiosSecure.patch(`/biodata/search/${email}`, {
       status: "Premium",
     });
-    console.log(response.data);
     if (response.data.modifiedCount > 0) {
       Swal.fire({
         position: "top-end",
@@ -26,7 +27,6 @@ const ApprovedPremium = () => {
         title: "Success! Your biodata is premium now.",
         showConfirmButton: false,
         timer: 1500,
-        
       });
     } else {
       Swal.fire({
@@ -37,11 +37,14 @@ const ApprovedPremium = () => {
         timer: 1500,
       });
     }
-    refetch()
+    refetch();
   };
 
   return (
     <>
+      <Helmet>
+        <title>Match Mingle || ApprovedPremium</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-200 bg-white shadow-lg">
           {/* Table Header */}

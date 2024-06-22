@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyContactRequest = () => {
   const { user } = useAuth();
@@ -15,12 +16,20 @@ const MyContactRequest = () => {
     queryKey: ["payments"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payments/${user?.email}`);
-      console.log(res.data);
       return res.data;
     },
   });
   if (isPending) {
-    return <span>Loading...</span>;
+    return (
+      <div className="w-10 h-10 mx-auto mt-10">
+        <div className="grid grid-cols-2 justify-center items-center gap-2 rounded-full">
+          <span className="h-5 w-5 rounded-tl-full bg-blue-500 animate-[ping_1.4s_linear_infinite]"></span>{" "}
+          <span className="h-5 w-5 rounded-tr-full bg-blue-500 animate-[ping_1.8s_linear_infinite]"></span>
+          <span className="h-5 w-5 rounded-bl-full bg-blue-500 animate-[ping_2.2s_linear_infinite]"></span>
+          <span className="h-5 w-5 rounded-br-full bg-blue-500 animate-[ping_2.6s_linear_infinite]"></span>
+        </div>
+      </div>
+    );
   }
 
   const handleDeleteApprovedRequest = (id) => {
@@ -51,6 +60,9 @@ const MyContactRequest = () => {
   };
   return (
     <div className="overflow-x-auto">
+      <Helmet>
+        <title>Match Mingle || MyContactBiodata</title>
+      </Helmet>
       <table className="min-w-full border border-gray-200 bg-white shadow-lg">
         {/* Table Header */}
         <thead>

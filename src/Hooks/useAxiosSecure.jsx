@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-  baseURL: "https://match-mingle-server-fahim-reshads-projects.vercel.app",
+  baseURL: "https://match-mingle-server-pi.vercel.app",
 });
 const useAxiosSecure = () => {
   return axiosSecure;

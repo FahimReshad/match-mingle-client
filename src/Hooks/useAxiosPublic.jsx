@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://match-mingle-server-fahim-reshads-projects.vercel.app",
+  baseURL: "https://match-mingle-server-pi.vercel.app",
 });
 const useAxiosPublic = () => {
   return axiosPublic;

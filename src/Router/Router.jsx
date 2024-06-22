@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         path: "/biodata/details/:id",
         loader: ({ params }) =>
           fetch(
-            `https://match-mingle-server-fahim-reshads-projects.vercel.app/biodata/details/${params.id}`
+            `https://match-mingle-server-pi.vercel.app/biodata/details/${params.id}`
           ),
         element: (
           <PrivateRoute>
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         path: "/checkout/:biodataId",
         loader: ({ params }) =>
           fetch(
-            `https://match-mingle-server-fahim-reshads-projects.vercel.app/biodata/checkout/${params.biodataId}`
+            `https://match-mingle-server-pi.vercel.app/biodata/checkout/${params.biodataId}`
           ),
         element: (
           <PrivateRoute>

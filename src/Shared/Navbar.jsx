@@ -85,36 +85,38 @@ const Navbar = () => {
       >
         <li className="group flex  cursor-pointer flex-col">Login</li>
       </NavLink>
-      {isAdmin ? <NavLink
-        to="/dashboard/adminDashboard"
-        className={({ isActive, isPending }) =>
-          isActive
-            ? "no-underline"
-            : isPending
-            ? "pending"
-            : "no-underline text-[#66451c]"
-        }
-      >
-        <li className="group flex  cursor-pointer flex-col">Dashboard</li>
-      </NavLink> : 
-      <NavLink
-      to="/dashboard/editBiodata"
-      className={({ isActive, isPending }) =>
-        isActive
-          ? "no-underline"
-          : isPending
-          ? "pending"
-          : "no-underline text-[#66451c]"
-      }
-    >
-      <li className="group flex  cursor-pointer flex-col">Dashboard</li>
-    </NavLink>
-      }
+      {isAdmin ? (
+        <NavLink
+          to="/dashboard/adminDashboard"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? "no-underline"
+              : isPending
+              ? "pending"
+              : "no-underline text-[#66451c]"
+          }
+        >
+          <li className="group flex  cursor-pointer flex-col">Dashboard</li>
+        </NavLink>
+      ) : (
+        <NavLink
+          to="/dashboard/editBiodata"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? "no-underline"
+              : isPending
+              ? "pending"
+              : "no-underline text-[#66451c]"
+          }
+        >
+          <li className="group flex  cursor-pointer flex-col">Dashboard</li>
+        </NavLink>
+      )}
     </>
   );
 
   return (
-    <nav className="flex items-center justify-between shadow bg-base-200 text-black px-4 -mx-2">
+    <nav className="flex items-center justify-between shadow-lg bg-white text-black px-4 -mx-2">
       <Link to="/">
         <div className="scale-100 cursor-pointer rounded-2xl text-xl font-semibold text-white transition-all duration-200 hover:scale-110 flex gap-2 items-center">
           <img

@@ -11,7 +11,9 @@ const Home = () => {
       <Helmet>
         <title>Match Mingle || Home</title>
       </Helmet>
+      <div>
       <Banner></Banner>
+      </div>
       <div className="container mx-auto">
         <PremiumBioCards></PremiumBioCards>
         <HowItWorks></HowItWorks>

@@ -27,7 +27,7 @@ const Banner = () => {
         currentSlider === sliders.length - 1 ? 0 : currentSlider + 1
       );
     return (
-      <div className=" h-[540px] md:h-[670px] flex items-center relative overflow-hidden">
+      <div className="h-[540px] md:h-[670px] flex items-center relative overflow-hidden">
         {/* arrow */}
         <button
           onClick={nextSlider}
@@ -65,9 +65,8 @@ const Banner = () => {
     );
   };
   return (
-    <div className=" h-[540px] lg:h-[670px] px-3 lg:px-10 flex flex-col lg:flex-row items-center justify-center overflow-hidden gap-5 lg:gap-10 relative">
-      {/* <div className="w-full absolute left-0 h-[540px] lg:h-[670px] -z-40"></div> */}
-      <div className="w-1/2 lg:w-1/3 text-center lg:text-left space-y-2 lg:space-y-5 py-5">
+    <div className="lg:h-[670px] px-3 lg:px-10 flex flex-col lg:flex-row items-center justify-center overflow-hidden lg:gap-10 relative">
+      <div className="w-full lg:w-1/3 text-center lg:text-left md:space-y-2 lg:space-y-5 lg:py-5">
         <h5 className="text-[#616161] text-xs md:text-2xl">#1 MATRIMONY</h5>
         <h1 className="text-lg md:text-2xl lg:text-5xl font-bold text-[#66451c]">
           Find your Right Match here
@@ -81,7 +80,7 @@ const Banner = () => {
           </button>
         </Link>
       </div>
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         <CarouselMain />
       </div>
     </div>

@@ -18,10 +18,13 @@ Hosting: Firebase Hosting
 
 ## Steps to Clone and Run Locally: 
 #### Clone the Repository:
-git clone https://github.com/your-username/match-mingle.git
+git clone https://github.com/FahimReshad/match-mingle-client.git
+
 cd match-mingle
+
 #### Install Dependencies:
 npm install
+
 #### Set Up Environment Variables:
 ###### Create a .env file in the root directory and add the following variables:
 VITE_APIKEY=your_api_key
@@ -32,8 +35,6 @@ VITE_MESSAGINGSENDERID=your_messaging_sender_id
 VITE_APPID=your_app_id
 #### Start the Development Server:
 npm run dev
-#### Access the Application:
-Open your browser and go to http://localhost:3000 to see the application running locally.
 
 Live site url:
 https://match-mingle-7cc0f.web.app/

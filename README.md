@@ -27,7 +27,7 @@ Hosting: Firebase Hosting
 #### Clone the Repository:
 git clone https://github.com/FahimReshad/match-mingle-client.git
 
-cd match-mingle
+cd match-mingle-client
 
 #### Install Dependencies:
 npm install

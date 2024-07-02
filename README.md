@@ -14,9 +14,13 @@ Advanced Matching Partner: Utilizes advanced partner to match users based on int
 
 ## Technologies Used :
 Frontend: HTML, TailwindCSS, javaScript, React.js
+
 Backend: Node.js, Express.js
+
 Database: MongoDB
+
 Authentication: Firebase Auth
+
 Hosting: Firebase Hosting
 
 ## Steps to Clone and Run Locally: 

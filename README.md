@@ -1,5 +1,8 @@
 Website Name: Match Mingle
 
+Live site url:  https://match-mingle-7cc0f.web.app/
+
+
 Match Mingle is an online platform designed to help people meet new individuals and build meaningful connections. This project addresses the problem of social connectivity by enabling users to easily find new friends, romantic partners, or networking opportunities.
 
 ## Features and Characteristics:
@@ -41,6 +44,3 @@ VITE_APPID=your_app_id
 
 #### Start the Development Server:
 npm run dev
-
-Live site url:
-https://match-mingle-7cc0f.web.app/

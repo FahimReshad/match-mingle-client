@@ -28,11 +28,17 @@ npm install
 #### Set Up Environment Variables:
 ###### Create a .env file in the root directory and add the following variables:
 VITE_APIKEY=your_api_key
+
 VITE_AUTHDOMAIN=your_auth_domain
+
 VITE_PROJECTID=your_project_id
+
 VITE_STORAGEBUCKET=your_storage_bucket
+
 VITE_MESSAGINGSENDERID=your_messaging_sender_id
+
 VITE_APPID=your_app_id
+
 #### Start the Development Server:
 npm run dev
 

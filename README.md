@@ -7,7 +7,7 @@ email: reshad3@gmail.com
 password: 123456As
 
 
-##Overview:
+## Overview:
 Match Mingle is an online platform designed to help people meet new individuals and build meaningful connections. This project addresses the problem of social connectivity by enabling users to easily find new friends, romantic partners, or networking opportunities.
 
 ## Features and Characteristics:

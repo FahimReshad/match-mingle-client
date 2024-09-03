@@ -3,7 +3,7 @@ Website Name: Match Mingle
 Live site url:  https://match-mingle-7cc0f.web.app/
 
 ### Admin Dashboard:
-email: reshad3@gmail.com  
+email: reshad2@gmail.com  
 password: 123456As
 
 

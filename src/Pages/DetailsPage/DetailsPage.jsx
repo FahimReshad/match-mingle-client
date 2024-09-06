@@ -129,10 +129,16 @@ const DetailsPage = () => {
               ""
             )}
 
+            <div className="flex items-center gap-6 -my-8">
+              <IoLocationSharp className="text-[#66451c] text-2xl border rounded-lg border-solid border-[#66451c] p-2" />
+              <h4 className="text-[#66451c] text-2xl border-[#66451c]">
+               Present Address: <span className="text-xl">{bio.presentDivision}</span>
+              </h4>
+            </div>
             <div className="flex items-center gap-6">
               <IoLocationSharp className="text-[#66451c] text-2xl border rounded-lg border-solid border-[#66451c] p-2" />
               <h4 className="text-[#66451c] text-2xl border-[#66451c]">
-                Address: <span className="text-xl">{bio.presentDivision}</span>
+               Permanent Address: <span className="text-xl">{bio.permanentDivision}</span>
               </h4>
             </div>
           </div>

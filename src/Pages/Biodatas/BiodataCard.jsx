@@ -13,14 +13,14 @@ const BiodataCard = ({ biodata }) => {
   } = biodata;
 
   return (
-    <div className="rounded-xl shadow-2xl p-4 hover:cursor-pointer">
+    <div className=" rounded-xl shadow-2xl p-4 hover:cursor-pointer">
   {/* Profile image & background */}
   <div className="relative">
     {/* Background image */}
     <img className="w-full h-64 rounded-2xl bg-gray-500 object-cover" src={profileImage} alt="Background Image" />
     
     {/* Profile picture */}
-    <img className="w-36 h-36 absolute -bottom-12 right-[35%] rounded-full border-4 border-white bg-gray-400 dark:border-[#18181B]" src={profileImage} alt="Profile Image" />
+    <img className="w-36 h-36 absolute -bottom-12 right-[28%] lg:right-[35%] rounded-full border-4 border-white bg-gray-400 dark:border-[#18181B]" src={profileImage} alt="Profile Image" />
   </div>
 
   {/* Name */}
@@ -45,29 +45,6 @@ const BiodataCard = ({ biodata }) => {
 </div>
 
   );
-
-// return (
-//   <div className=" rounded-2xl bg-white px-6 py-8 shadow-md dark:bg-[#18181B]">
-//   {/* profile image & bg  */}
-//   <div className="relative ">
-//       <img className="w-full h-64 rounded-2xl bg-gray-500 object-cover" src={profileImage} alt="card navigate ui" />
-//       <img  className="w-28 h-28 absolute -bottom-12 right-[40%] rounded-full border-4 border-white bg-gray-400 dark:border-[#18181B]" src={profileImage} alt="card navigate ui"/>
-//   </div>
-//   {/* profile name & role */}
-//   <div className="px-10">
-//       <h1 className="pt-10 text-2xl md:text-2xl">{name}</h1>
-//   </div>
-// <div className="flex gap-6">
-//   <div><h5>{bioDataType}</h5></div>
-//   <div><h5>{bioDataType}</h5></div>
-// </div>
-//   <div className="flex justify-center">
-//       <button className="w-[80%] rounded-full py-2 font-medium text-gray-400 shadow-[0px_0px_10px_#E2DADA] duration-500  hover:scale-95 hover:bg-[#0095FF] hover:text-white hover:shadow-xl dark:shadow-[0px_2px_8px_0px_rgba(0,0,0,0.8)]">Follow</button>
-//   </div>
-// </div>
-// )
-
-
 };
 
 export default BiodataCard;

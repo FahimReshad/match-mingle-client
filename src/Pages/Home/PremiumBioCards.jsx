@@ -42,49 +42,64 @@ const PremiumBioCards = () => {
         Moment's
       </p>
       <h2 className="text-[#66451c] text-center text-4xl font-poppins -mt-4">
-        Our Premium Member's 
+        Our Premium Member's
       </h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
         {premiumBiodatas.slice(0, 6).map((premiumBiodata) => (
           <>
-            <div className="flex flex-col items-center justify-center  rounded-xl bg-white p-8 shadow-lg dark:bg-[#18181B]">
-              <div className="group">
+            <div className=" rounded-xl shadow-2xl p-4 hover:cursor-pointer">
+              {/* Profile image & background */}
+              <div className="relative">
+                {/* Background image */}
                 <img
-                  width={110}
-                  height={110}
-                  className="h-[110px] w-[110px] rounded-full bg-slate-500 object-cover"
+                  className="w-full h-64 rounded-2xl bg-gray-500 object-cover"
                   src={premiumBiodata.profileImage}
-                  alt="card navigate ui"
+                  alt="Background Image"
+                />
+
+                {/* Profile picture */}
+                <img
+                  className="w-36 h-36 absolute -bottom-12 right-[27%] lg:right-[35%] rounded-full border-4 border-white bg-gray-400 dark:border-[#18181B]"
+                  src={premiumBiodata.profileImage}
+                  alt="Profile Image"
                 />
               </div>
-              <div className="">
-                <div className="text-2xl -mb-14  text-[#66451c] flex justify-evenly">
-                  <h5>Biodata Id:</h5>
-                  <h5>{premiumBiodata.biodataId}</h5>
+
+              {/* Name */}
+              <div className="pt-10 text-2xl text-center text-[#212529] hover:text-[#66451c]">
+                <h2>{premiumBiodata.name}</h2>
+              </div>
+
+              {/* Bio data */}
+              <div className="flex items-center justify-center gap-4 h-8 -mt-4 my-4">
+                <div>
+                  <h5 className="text-xl text-[#FFFFFF] bg-[#718FA0] px-2 rounded">
+                    {premiumBiodata.bioDataType}
+                  </h5>
                 </div>
-                <div className="text-2xl -mb-14 text-[#66451c] flex justify-evenly">
-                  <h5>Biodata Type:</h5>
-                  <h5>{premiumBiodata.bioDataType}</h5>
+                <div>
+                  <h5 className="text-xl text-[#FFFFFF] bg-[#718FA0] px-2 rounded">
+                    {premiumBiodata.permanentDivision}
+                  </h5>
                 </div>
-                <div className="text-2xl -mb-14 text-[#66451c] flex justify-between">
-                  <h5>Permanent Division:</h5>
-                  <h5>{premiumBiodata.permanentDivision}</h5>
+                <div className="">
+                  <h5 className="text-xl text-[#FFFFFF] bg-[#718FA0] px-2 rounded"><span>Age: </span> 
+                     {premiumBiodata.age}
+                  </h5>
                 </div>
-                <div className="text-2xl -mb-14 text-[#66451c] flex justify-evenly">
-                  <h5>Age:</h5>
-                  <h5>{premiumBiodata.age}</h5>
-                </div>
-                <div className="text-2xl text-[#66451c] flex justify-evenly">
-                  <h5>Occupation:</h5>
-                  <h5>{premiumBiodata.occupation}</h5>
+                <div className="hidden lg:block">
+                  <h5 className="text-xl text-[#FFFFFF] bg-[#718FA0] px-2 rounded">
+                    {premiumBiodata.occupation}
+                  </h5>
                 </div>
               </div>
 
+              {/* View Profile Button */}
               <Link
                 to={`/biodata/details/${premiumBiodata._id}`}
                 className="w-full"
               >
-                <button className="w-full rounded-full py-2 text-[12px] font-semibold text-[#66451c] ring-1 ring-[#66451c] hover:bg-[#66451c] hover:text-white sm:text-sm md:text-base">
+                <button className="w-full rounded-full py-2 text-[16px] font-semibold text-[#212529] ring-1 ring-[#66451c] hover:bg-[#66451c] hover:text-white hover:cursor-pointer transition duration-300 ease-in-out sm:text-base md:text-lg">
                   View Profile
                 </button>
               </Link>

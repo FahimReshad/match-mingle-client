@@ -83,8 +83,9 @@ const PremiumBioCards = () => {
                   </h5>
                 </div>
                 <div className="">
-                  <h5 className="text-xl text-[#FFFFFF] bg-[#718FA0] px-2 rounded"><span>Age: </span> 
-                     {premiumBiodata.age}
+                  <h5 className="text-xl text-[#FFFFFF] bg-[#718FA0] px-2 rounded">
+                    <span>Age: </span>
+                    {premiumBiodata.age}
                   </h5>
                 </div>
                 <div className="hidden lg:block">

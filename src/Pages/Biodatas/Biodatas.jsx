@@ -40,7 +40,7 @@ const Biodatas = () => {
           setSearchResults={setSearchResults}
         />
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 w-full">
         {searchResults.length > 0
           ? searchResults.map((biodata) => (
               <BiodataCard key={biodata._id} biodata={biodata} />

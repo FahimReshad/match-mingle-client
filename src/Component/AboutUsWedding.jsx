@@ -31,7 +31,7 @@ const AboutUsWedding = () => {
           the majority have suffered alteration in some form, by injected
           humour, or randomised words which don't look even slightly believable.
         </p>
-        <div className="flex gap-8">
+        <div className="flex flex-col md:flex-row md:gap-8 gap-4">
           <div className="flex items-center justify-center gap-4">
             <div className="bg-slate-400 rounded-full p-2">
               <FaPhoneAlt className="text-[#66451c] text-3xl" />

@@ -155,7 +155,7 @@ const Navbar = () => {
           <line x1="4" x2="20" y1="18" y2="18" />{" "}
         </svg>
         {dropDownState && (
-          <ul className="shadow-lg text-xl absolute right-0 top-11 flex w-[200px] flex-col rounded-lg z-10 font-poppins font-semibold uppercase">
+          <ul className="shadow-xl bg-white text-xl absolute right-0 top-11 flex w-[200px] flex-col rounded-lg z-10 font-poppins font-semibold uppercase py-4">
             {navLink}
           </ul>
         )}

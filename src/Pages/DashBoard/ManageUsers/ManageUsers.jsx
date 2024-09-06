@@ -16,17 +16,26 @@ const ManageUsers = () => {
     },
   });
   const handleAdmin = (user) => {
-    axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-      if (res.data.modifiedCount > 0) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${user.name} is an admin now`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
+    axiosSecure.patch(`/users/admin/${user._id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user.name} is an admin now`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }else {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user.name} is a admin`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
   };
 
   const handlePremium = (user) => {

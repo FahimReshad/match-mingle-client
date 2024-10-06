@@ -23,21 +23,26 @@ const Footer = () => {
         <div className="text-[#415764] font-semibold">
           <h4 className="uppercase text-xl text-[#415764]">SOCIAL MEDIA</h4>
           <div className="flex justify-start space-x-6">
-          <FaFacebook className="text-3xl text-sky-800"/>
-          <FaTwitter className="text-3xl text-sky-400"/>
-          <IoLogoInstagram className="text-3xl text-pink-600"/>
+            <FaFacebook className="text-3xl text-sky-800" />
+            <FaTwitter className="text-3xl text-sky-400" />
+            <IoLogoInstagram className="text-3xl text-pink-600" />
           </div>
         </div>
       </footer>
       <div className="text-center text-2xl text-[#415764]">
         <h5>
           Company name Site - Trusted by over thousands of Boys & Girls for
-          successfull marriage. <Link to='/registration'><button className="bg-[#415764] text-white p-2 rounded-md font-semibold hover:cursor-pointer">Join us today!</button></Link>
+          successfull marriage.
+          <Link to="/registration">
+            <button className="bg-[#415764] text-white p-2 rounded-md font-semibold hover:cursor-pointer">
+              Join us today!
+            </button>
+          </Link>
         </h5>
       </div>
       <aside className="bg-gray-500 py-5 text-center text-sm text-white dark:bg-gray-800">
-                <p>Copyright © 2023 Match Mingle All rights reserved.</p>
-            </aside>
+        <p>Copyright © 2023 Match Mingle All rights reserved.</p>
+      </aside>
     </div>
   );
 };

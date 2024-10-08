@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Marquee from "react-fast-marquee";
 
 const ContactUsForm = () => {
@@ -16,7 +17,6 @@ const ContactUsForm = () => {
             <p className="animate-pulse text-xl md:text-3xl lg:text-4xl font-poppins font-semibold text-[#66451c] pt-6">
               Easy and fast.
             </p>
-
             <Marquee>
               <img
                 className="w-full lg:pt-20"
@@ -37,7 +37,7 @@ const ContactUsForm = () => {
           <form className="flex  w-full flex-col items-center justify-center gap-4">
             <input
               className="w-[80%] rounded-lg border border-[#66451c] px-6 py-2 focus:outline-none focus:ring-2 focus:ring-[#66451c]/50 lg:w-[60%]"
-              type="email"
+              type="text"
               placeholder="Enter your full name"
               name="name"
             />
@@ -57,7 +57,7 @@ const ContactUsForm = () => {
               className="w-[80%] rounded-lg border border-[#66451c] px-6 py-2 focus:outline-none focus:ring-2 focus:ring-[#66451c]/50 lg:w-[60%] h-20"
               type="text"
               placeholder="Enter message"
-              name="phone"
+              name="message"
             />
 
             <input
